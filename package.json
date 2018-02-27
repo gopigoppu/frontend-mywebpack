@@ -1,0 +1,14 @@
+{
+  "name": "fe-kit",
+  "version": "1.0.0",
+  "description": "This is a simple front end kit package",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gopi",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
