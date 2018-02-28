@@ -1,3 +1,3 @@
-//This is a JS file
+import App from './modules/app.js';
 
-// Another comment
+const app = new App();
