@@ -22,6 +22,8 @@ var jsDIST = "./dist/js"
 var jsWatch = "src/js/**/*.js";
 var jsFILES = [jsSRC];
 
+var htmlWatch = '**/*.html';
+
 gulp.task('style', function () {
     gulp.src(styleSRC)
         .pipe(sourcemaps.init())
@@ -99,5 +101,6 @@ gulp.task('default', ['style', 'js']);
 gulp.task('watch', ['default', 'browser-sync'], function () {
     gulp.watch(styleWatch, ['style', reload]);
     gulp.watch(jsWatch, ['js', reload]);
+    gulp.watch(htmlWatch, reload);
 
 })
