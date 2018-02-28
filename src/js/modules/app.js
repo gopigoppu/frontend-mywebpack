@@ -1,7 +1,7 @@
 class App {
 
     constructor() {
-        console.info('App initialized');
+        console.info('App initialized with browser sync');
     }
 
 }

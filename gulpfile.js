@@ -9,6 +9,8 @@ var browserify = require('browserify');
 var babelify = require('babelify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
+var browserSync = require('browser-sync').create();
+var reload = browserSync.reload;
 
 var styleSRC = "src/scss/style.scss";
 var styleDIST = "./dist/css";
@@ -34,7 +36,8 @@ gulp.task('style', function () {
         }))
         .pipe(rename({ suffix: '.min' }))
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest(styleDIST));
+        .pipe(gulp.dest(styleDIST))
+        .pipe(browserSync.stream())
 
 });
 
@@ -67,16 +70,34 @@ gulp.task('js', function () {
             .pipe(uglify())
             .pipe(sourcemaps.write('./'))
             .pipe(gulp.dest(jsDIST))
+            .pipe(browserSync.stream())
     });
+});
 
 
+gulp.task('browser-sync', function () {
+    browserSync.init({
 
+        // open: false,
+        // injectChanges: true,
+        // proxy: 'http://gulp.dev'
+
+
+        // https: {
+        //     key: '',
+        //     cert: ''
+        // }
+
+        server: {
+            baseDir: "./"
+        }
+    });
 });
 
 gulp.task('default', ['style', 'js']);
 
-gulp.task('watch', ['default'], function () {
-    gulp.watch(styleWatch, ['style']);
-    gulp.watch(jsWatch, ['js']);
+gulp.task('watch', ['default', 'browser-sync'], function () {
+    gulp.watch(styleWatch, ['style', reload]);
+    gulp.watch(jsWatch, ['js', reload]);
 
 })
