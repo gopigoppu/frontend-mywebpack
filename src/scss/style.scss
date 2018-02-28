@@ -1,4 +1,6 @@
-@import 'base/variable.scss';
+@import 'base/variable';
+@import 'base/grid';
+@import 'base/button.scss';
 
 body{
     background:$bg;
@@ -7,4 +9,8 @@ body{
 
 a{
     transition: all 320ms ease;
+}
+
+p{
+    color: #321;
 }
